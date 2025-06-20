@@ -52,5 +52,3 @@ cd frontend
 - `dist/app`: Pasta de build gerada pelo Angular
 
 ---
-
-Se tiver dúvidas ou problemas, abra uma issue ou entre em contato!
