@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CreditoService {
-  private api = environment.apiUrl || 'http://localhost:8050/api/creditos';
+  private api = `${environment.apiUrl}/creditos`;
 
   constructor(private http: HttpClient) {}
 

@@ -11,7 +11,7 @@ Este projeto é uma aplicação Angular standalone para consulta de créditos de
 ## Clonando o repositório
 
 ```sh
-git clone <URL_DO_SEU_REPOSITORIO>
+git clone https://github.com/Fredalessandro/front-creditos-fiscais.git
 cd frontend
 ```
 

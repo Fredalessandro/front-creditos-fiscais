@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Usuario } from '../../models/usuario.model';
+import { AuthService } from '../../services/auth.service';
 import { CreditoService } from '../credito.service';
 
 @Component({
@@ -10,14 +13,23 @@ import { CreditoService } from '../credito.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule]
 })
-export class CreditoComponent {
+export class CreditoComponent implements OnInit {
   filtroTipo = new FormControl<'nfe' | 'credito'>('nfe');
   valorFiltro = new FormControl('');
   creditos: any[] = [];
   loading = false;
   erro: string | null = null;
+  usuario: Usuario | null = null;
 
-  constructor(private creditoService: CreditoService) {}
+  constructor(
+    private creditoService: CreditoService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.usuario = this.authService.getUsuario();
+  }
 
   buscar() {
     this.erro = null;
@@ -53,5 +65,10 @@ export class CreditoComponent {
         }
       });
     }
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
